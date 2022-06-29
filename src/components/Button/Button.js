@@ -10,8 +10,6 @@ const Button = ({onClick
 }
 
 Button.propTypes = {
-    // avatar: PropTypes.string,
-    // name: PropTypes.string,
-    // isOnline: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 export default Button;

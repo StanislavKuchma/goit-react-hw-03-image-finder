@@ -35,7 +35,7 @@ export default class ImageGallery extends PureComponent {
     try {
       const response = await axios.get(`https://pixabay.com/api/?key=26970425-ccd1377388b76d413dfca163b&q=${this.props.query}&image_type=foto&orientation=horizontal&safesearch=true&per_page=12&page=${this.props.page}`);
       // toast("Wow so easy!")
-          if (response.data.total ==0) {
+          if (response.data.total ===0) {
             Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again. `);
             this.props.onShow(false);
         }
