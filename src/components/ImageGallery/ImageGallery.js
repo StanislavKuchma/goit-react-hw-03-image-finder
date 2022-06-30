@@ -17,8 +17,6 @@ export default class ImageGallery extends PureComponent {
     if (prevProps.query !== this.props.query) { 
       this.setState({ loading: true, images: [] });
       this.fetchImages();
-      // () => onClose(false)
-      this.setState(prevState=>{return{page: prevState.page +=1}})
       this.props.onShow(true)
       return
     }
@@ -38,7 +36,12 @@ export default class ImageGallery extends PureComponent {
           if (response.data.total ===0) {
             Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again. `);
             this.props.onShow(false);
-        }
+      }
+
+          if (this.props.page * 12 >response.data.total) {
+            Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+            this.props.onShow(false);
+      }
 
       this.setState(prevState => {
         const newArray = [...prevState.images, ...response.data.hits]
